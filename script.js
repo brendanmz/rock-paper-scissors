@@ -29,21 +29,35 @@ function playRound(playerSelection, computerSelection) {
     return "You win!";
   }
 }
-
-// Play's 5 rounds of the game, reports winner or loser at the end
 function game() {
   // Score starts at 0 on page load
-  var playerScore = 0;
-  var computerScore = 0;
-  let playerSelection = prompt("Choose your weapon - hint: rock, paper, or scissors").toLowerCase();
-  const computerSelection = computerPlay();
-  playRound();
+  let playerScore = 0;
+  let computerScore = 0;
 
-  if (playRound(playerSelection, computerSelection) == "Tie!") {
-    console.log("Tie!");
-  } else if (playRound(playerSelection, computerSelection) == "You win!") {
-    console.log("You win!");
-  } else if (playRound(playerSelection, computerSelection) == "You lose!") {
-    console.log("You lose!");
+  for (i = 0; i < 5; i++) {
+    const playerSelection = prompt("Choose your weapon - hint: rock, paper, or scissors").toLowerCase();
+    playRound();
+    const computerSelection = computerPlay();
+
+    if (playRound(playerSelection, computerSelection) == "Tie!") {
+      console.log("Tie!");
+    } else if (playRound(playerSelection, computerSelection) == "You win!") {
+      playerScore += 1;
+      console.log("You win!");
+    } else if (playRound(playerSelection, computerSelection) == "You lose!") {
+      computerScore += 1;
+      console.log("You lose!");
+    }
+    trackScore();
+  }
+
+  function trackScore() {
+    console.log("Player score is " + playerScore);
+    console.log("Computer score is " + computerScore);
+  }
+  if (computerScore > playerScore) {
+    console.log("Computer Wins!");
+  } else {
+    console.log("Human Wins!");
   }
 }
