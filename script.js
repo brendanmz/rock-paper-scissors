@@ -42,7 +42,7 @@ function playRound(playerSelection, computerSelection) {
 
     trackScore();
 
-    // FIXME: make score reset
+    // TODO: make game results disappear on new game
     if (computerScore === 5) {
         document.querySelector(".gameResults").innerHTML = "Computer Wins!";
         document.querySelector(".scoreReset").innerHTML = "Score has been reset";
@@ -54,7 +54,10 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-function resetScore() {}
+function resetScore() {
+    playerScore = 0;
+    computerScore = 0;
+}
 
 function trackScore() {
     document.querySelector(".playerScore").innerHTML = "Player score is " + playerScore;
