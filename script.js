@@ -1,13 +1,9 @@
 const buttonRock = document.querySelector("#buttonRock");
-//console.log(buttonRock);
 const buttonPaper = document.querySelector("#buttonPaper");
-//console.log(buttonPaper);
 const buttonScissors = document.querySelector("#buttonScissors");
-// Score starts at 0 on page load
+
 let playerScore = 0;
 let computerScore = 0;
-let roundResults;
-//console.log(buttonScissors);
 
 game();
 // Random number defining what computer plays
@@ -21,50 +17,48 @@ function computerPlay() {
         return "scissors";
     }
 }
-
 // Defines basic rules of game
 function playRound(playerSelection, computerSelection) {
     if (playerSelection === computerSelection) {
-        let roundResults = "draw";
-        console.log("Human: " + playerSelection + "\nComputer: " + computerSelection + "\nDraw!");
+        document.querySelector(".playerResults").innerHTML = "Human: " + playerSelection;
+        document.querySelector(".computerResults").innerHTML = "Computer: " + computerSelection;
     } else if (
         (playerSelection == "paper" && computerSelection == "rock") |
         (playerSelection == "rock" && computerSelection == "scissors") |
         (playerSelection == "scissors" && computerSelection == "paper")
     ) {
         playerScore++;
-        console.log("Human: " + playerSelection + "\nComputer: " + computerSelection + "\nYou win!");
+        document.querySelector(".playerResults").innerHTML = "Human: " + playerSelection;
+        document.querySelector(".computerResults").innerHTML = "Computer: " + computerSelection;
     } else if (
         (playerSelection == "paper" && computerSelection == "scissors") |
         (playerSelection == "rock" && computerSelection == "paper") |
         (playerSelection == "scissors" && computerSelection == "rock")
     ) {
         computerScore++;
-        console.log("Human: " + playerSelection + "\nComputer: " + computerSelection + "\nYou lose!");
+        document.querySelector(".playerResults").innerHTML = "Human: " + playerSelection;
+        document.querySelector(".computerResults").innerHTML = "Computer: " + computerSelection;
     }
-    if (roundResults === "draw") {
-    } else if (roundResults === "win") {
-        playerScore += 1;
-    } else if (roundResults === "lose") {
-        computerScore += 1;
-    }
+
     trackScore();
+
+    // FIXME: make score reset
     if (computerScore === 5) {
-        console.log("Computer Wins!");
-        let playerScore = 0;
-        let computerScore = 0;
-        console.log("Score has been reset!");
+        document.querySelector(".gameResults").innerHTML = "Computer Wins!";
+        document.querySelector(".scoreReset").innerHTML = "Score has been reset";
+        resetScore();
     } else if (playerScore === 5) {
-        console.log("Human Wins!");
-        let playerScore = 0;
-        let computerScore = 0;
-        console.log("Score has been reset!");
+        document.querySelector(".gameResults").innerHTML = "Human Wins!";
+        document.querySelector(".scoreReset").innerHTML = "Score has been reset";
+        resetScore();
     }
 }
 
+function resetScore() {}
+
 function trackScore() {
-    console.log("Player score is " + playerScore);
-    console.log("Computer score is " + computerScore);
+    document.querySelector(".playerScore").innerHTML = "Player score is " + playerScore;
+    document.querySelector(".computerScore").innerHTML = "Computer score is " + computerScore;
 }
 
 function game() {
