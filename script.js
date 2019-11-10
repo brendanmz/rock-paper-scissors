@@ -19,6 +19,8 @@ function computerPlay() {
 }
 // Defines basic rules of game
 function playRound(playerSelection, computerSelection) {
+    document.querySelector(".gameResults").innerHTML = "";
+    document.querySelector(".scoreReset").innerHTML = "";
     if (playerSelection === computerSelection) {
         document.querySelector(".playerResults").innerHTML = "Human: " + playerSelection;
         document.querySelector(".computerResults").innerHTML = "Computer: " + computerSelection;
@@ -42,7 +44,6 @@ function playRound(playerSelection, computerSelection) {
 
     trackScore();
 
-    // TODO: make game results disappear on new game
     if (computerScore === 5) {
         document.querySelector(".gameResults").innerHTML = "Computer Wins!";
         document.querySelector(".scoreReset").innerHTML = "Score has been reset";
